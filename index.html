@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sait Kaplan</title>
+<link rel="canonical" href="https://saitkaplan.com/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://saitkaplan.com/">
+<meta property="og:title" content="Sait Kaplan">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500&family=IBM+Plex+Sans:wght@700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --sheet:  #eceded;
+    --grid:   #dcdedf;
+    --ink:    #16191c;
+    --pencil: #5f666c;
+    --blue:   #1f4b8f;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+
+  html, body { height: 100%; }
+
+  body {
+    margin: 0;
+    background-color: var(--sheet);
+    background-image:
+      linear-gradient(var(--grid) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+    background-size: 2.5rem 2.5rem;
+    color: var(--ink);
+    font-family: "IBM Plex Sans", system-ui, sans-serif;
+    display: grid;
+    place-items: center;
+    padding: 3rem 1.5rem;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  main {
+    width: 100%;
+    max-width: 34rem;
+  }
+
+  .name {
+    font-size: clamp(2.5rem, 9vw, 4.25rem);
+    font-weight: 700;
+    letter-spacing: -0.035em;
+    line-height: 1.02;
+    margin: 0;
+  }
+
+  /* Dimension line - the annotation rule from a technical drawing. */
+  .dimension {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin: 1.75rem 0 0;
+  }
+
+  .dimension::before,
+  .dimension::after {
+    content: "";
+    height: 9px;
+    width: 1px;
+    background: var(--blue);
+    flex: none;
+  }
+
+  .dimension_rule {
+    flex: 1;
+    height: 1px;
+    background: var(--blue);
+  }
+
+  .dimension_label {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.6875rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--pencil);
+    white-space: nowrap;
+  }
+</style>
+</head>
+<body>
+  <main>
+    <h1 class="name">Sait&nbsp;Kaplan</h1>
+    <div class="dimension">
+      <span class="dimension_rule" aria-hidden="true"></span>
+      <span class="dimension_label">Coming soon</span>
+      <span class="dimension_rule" aria-hidden="true"></span>
+    </div>
+  </main>
+</body>
+</html>
