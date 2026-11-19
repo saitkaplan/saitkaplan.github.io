@@ -1,0 +1,52 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          # react-router@8.3.0 requires >=22.22.0 — pinned explicitly so a
+          # bare "22" doesn't silently resolve to an older 22.x patch.
+          node-version: 22.22.0
+          cache: npm
+      - run: npm ci
+      # Quality gates run before the build, so a type or lint error stops the
+      # deploy instead of shipping. `build` does not typecheck on its own —
+      # Vite strips types without checking them.
+      - run: npm run typecheck
+      - run: npm run lint
+      - run: npm run build
+      - uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5.0.0
+        with:
+          path: build/client
+          # v4.0.0+ of this action excludes dotfiles (like our .nojekyll)
+          # from the artifact by default — harmless here since the Actions
+          # deploy path never runs Jekyll regardless of .nojekyll's
+          # presence. include-hidden-files would restore it if that ever
+          # stops being true (e.g. a future move back to branch deploys).
+
+  deploy:
+    needs: build
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@cd2ce8fcbc39b97be8ca5fce6e763baed58fa128 # v5.0.0

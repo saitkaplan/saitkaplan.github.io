@@ -1,0 +1,21 @@
+/* Design tokens, carried over from the original coming-soon page: a sheet
+   of drafting paper with a faint grid, ink, a pencil grey for annotations
+   and a single drafting blue. */
+:root {
+  --sheet: #eceded;
+  --grid: #dcdedf;
+  --ink: #16191c;
+  --pencil: #5f666c;
+  --blue: #1f4b8f;
+
+  --sans: "IBM Plex Sans", system-ui, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, monospace;
+
+  /* Type scale for small UI text. Nothing user-facing goes below --fs-2xs.
+     Headings are fluid (clamp) and sit outside this scale. */
+  --fs-2xs: 11px;
+  --fs-xs: 12px;
+
+  --grid-size: 2.5rem;
+  --content-width: 40rem;
+}
